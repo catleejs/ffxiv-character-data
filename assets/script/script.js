@@ -5,14 +5,19 @@ const characterid = "character/";
 
 let lastRes = '';
 const fetchCharacterSearch = function(charname) {
-  return fetch(ffxivUrl + characterSearch + '?name=' + charname + '&private_key=' + ffxivKey)
+  return fetch(ffxivUrl + characterSearch + '?name=' + charname + "&server=Zalera" +'&private_key=' + ffxivKey)
   .then(function (res){
     return res.json();
   }).then(function(json) {
     console.log(json);
     lastRes = json;
+    console.log(lastRes);
   });
 }
+
+fetchCharacterSearch("Mellow Mushroom");
+
+// console.log(fetchCharacterSearch.);
 
 const fetchcharacterid = function(charid) {
   fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
@@ -23,3 +28,5 @@ const fetchcharacterid = function(charid) {
     lastRes = json;
   });
 }
+
+// fetchcharacterid();
