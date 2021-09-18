@@ -17,7 +17,10 @@ const fetchCharacterSearch = function(charname) {
 
 fetchCharacterSearch("Mellow Mushroom");
 
-// console.log(fetchCharacterSearch.);
+// How do we access the values we are return in the function above? For example, how do we store the character ID returned into a variable so that we can pass that variable into the function below.
+// Once we pass that variable ID value to the function below, we can call that function and return any character statistics
+
+
 
 const fetchcharacterid = function(charid) {
   fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
