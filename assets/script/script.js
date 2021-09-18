@@ -3,6 +3,9 @@ const ffxivUrl = "https://xivapi.com/";
 const characterSearch = "character/search";
 const characterid = "character/";
 
+const imgchUrl = 'https://image-charts.com/chart?';
+const imgchType = 'cht=bvs';
+
 let lastRes = '';
 const fetchCharacterSearch = function(charname) {
   return fetch(ffxivUrl + characterSearch + '?name=' + charname + '&private_key=' + ffxivKey)
@@ -22,4 +25,14 @@ const fetchcharacterid = function(charid) {
     console.log(json);
     lastRes = json;
   });
+}
+
+const attachStatChart = function (target, stats, width, height) {
+  const chartUrl = imgchUrl +
+    [
+      imgchType,
+      'chd=t:' + stats.join(','),
+      `chs=${width}x${height}`
+    ].join('&');
+  target.innerHTML = `<img src=${chartUrl}></img>`;
 }
