@@ -2,6 +2,7 @@ const ffxivKey = "a308a0bb8cc54a5c8f2f0c8bcb094b6641792b1ef5454012abfc2abb1dad94
 const ffxivUrl = "https://xivapi.com/";
 const characterSearch = "character/search";
 const characterid = "character/";
+const barColor = 'CCCCCC';
 
 const imgchUrl = 'https://image-charts.com/chart?';
 const imgchType = 'cht=bvs';
@@ -27,12 +28,14 @@ const fetchcharacterid = function(charid) {
   });
 }
 
-const attachStatChart = function (target, stats, width, height) {
+const attachStatChart = function (target, width, height, statnames, statvals, statcolors=[barColor]) {
   const chartUrl = imgchUrl +
     [
       imgchType,
-      'chd=t:' + stats.join(','),
+      'chd=t:' + statvals.join(','),
+      'chl=' + statnames.join('|'),
       `chs=${width}x${height}`
+      `chco=${statcolors.join('|')}`,
     ].join('&');
-  target.innerHTML = `<img src=${chartUrl}></img>`;
+  target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
