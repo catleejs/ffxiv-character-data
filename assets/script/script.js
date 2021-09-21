@@ -36,7 +36,6 @@ const fetchcharacterid = function(charid) {
   });
 }
 
-<<<<<<< HEAD
 const attachStatChart = function (target, width, height, statnames, statvals, statcolors=[barColor]) {
   const chartUrl = imgchUrl +
     [
@@ -48,6 +47,4 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
     ].join('&');
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
-=======
 // fetchcharacterid();
->>>>>>> c78c6b9b45910d5b8f35e6235714caa3ff81dacb
