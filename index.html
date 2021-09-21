@@ -35,8 +35,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field has-addons">
-            <input class="input is-primary" type="text" placeholder="Search Character Name">
-            <button class="button is-info" type="submit">Submit</button>
+            <form id='search-form'>
+              <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name">
+              <button id="search-button" class="button is-info" type="submit">Submit</button>
+            </form>
           </div>
         </div>
       </div>
@@ -62,10 +64,10 @@
                 <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
                 <div class="columns is-mobile">
                   <div class="column">
-                    <p class="bd-notification is-info">Character Image</p>
+                    <div id="character-avi" class="bd-notification is-info">Character Image</div>
                   </div>
                   <div class="column">
-                    <p class="bd-notification is-info">Character Statistics</p>
+                    <p id="character-stats" class="bd-notification is-info">Character Statistics</p>
                   </div>
                 </div>
               </div>
