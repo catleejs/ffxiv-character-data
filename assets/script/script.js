@@ -34,7 +34,7 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
       imgchType,
       'chd=t:' + statvals.join(','),
       'chl=' + statnames.join('|'),
-      `chs=${width}x${height}`
+      `chs=${width}x${height}`,
       `chco=${statcolors.join('|')}`,
     ].join('&');
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
