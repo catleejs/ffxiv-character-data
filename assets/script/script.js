@@ -15,16 +15,9 @@ const fetchCharacterSearch = function(charname) {
   }).then(function(json) {
     console.log(json);
     lastRes = json;
-    console.log(lastRes);
+    return json;
   });
 }
-
-fetchCharacterSearch("Mellow Mushroom");
-
-// How do we access the values we are return in the function above? For example, how do we store the character ID returned into a variable so that we can pass that variable into the function below.
-// Once we pass that variable ID value to the function below, we can call that function and return any character statistics
-
-
 
 const fetchcharacterid = function(charid) {
   fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
@@ -33,6 +26,7 @@ const fetchcharacterid = function(charid) {
   }).then(function(json) {
     console.log(json);
     lastRes = json;
+    return json
   });
 }
 
@@ -47,4 +41,17 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
     ].join('&');
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
-// fetchcharacterid();
+
+document.querySelector('#search-button').addEventListener('click', ev => {
+  ev.preventDefault();
+  let text = document.querySelector('#search-text');
+  let searchStr = text.value;
+  searchStr.replace(' ', '+');
+  fetchCharacterSearch(searchStr)
+  .then(json => {
+    document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
+    return fetchcharacterid(json.Results[0].ID);
+  })
+  .then(res => {
+  });
+});
