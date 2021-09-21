@@ -55,3 +55,8 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   .then(res => {
   });
 });
+
+// creating localStorage for persistent data; in progress
+window.localStorage.setItem('characterid', JSON.stringify(characterid));
+window.localStorage.getItem('characterid');
+JSON.parse(window.localStorage.getItem('characterid'));
