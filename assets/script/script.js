@@ -58,14 +58,24 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
 
 document.querySelector('#search-button').addEventListener('click', ev => {
   ev.preventDefault();
+  let desc = document.querySelector('#about-me-text');
   let text = document.querySelector('#search-text');
+
+  let searchStr = text.value;
+  if ('' === searchStr) {
+    desc.textContent = 'Please enter a name to search!';
+    console.log('no character name to search');
+    return false;
+  }
+
   let server = document.querySelector('#server-list').value;
   if ('' === server) {
-    // Handle no server selected
+    desc.textContent = 'Please select a server!';
     console.log('unselected server');
     return false;
   }
-  let searchStr = text.value;
+
+  desc.textContent = 'Searching...';
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
   .then(json => {
