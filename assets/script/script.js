@@ -57,6 +57,13 @@ document.querySelector('#search-button').addEventListener('click', ev => {
 });
 
 // creating localStorage for persistent data; in progress
-window.localStorage.setItem('characterid', JSON.stringify(characterid));
-window.localStorage.getItem('characterid');
-JSON.parse(window.localStorage.getItem('characterid'));
+const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+const charaData = JSON.parse(localStorage.getItem('searchHistory'));
+  if (charaData) {
+    fetchInfo(charaData[0], true);
+    $(".search-history").show();
+
+    state.searchHistory = charaData;
+  } else {
+    state.searchHistory = [];
+  }
