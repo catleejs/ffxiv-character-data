@@ -81,38 +81,62 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   fetchCharacterSearch(searchStr, server)
   .then(json => {
     document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
+    pushlocal(json.Results[0]);
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
   });
 });
 function fetchInfo(charaData, flag){
-  var history=document.querySelector('.searchHistory')
-  history.innerHTML=charaData
+  var history=document.querySelector('.search-history');
+  // history.innerHTML=charaData;
 }
-// creating localStorage for persistent data; in progress
-const searchHistory = JSON.parse(localStorage.getItem(historyKey));
-const charaData = JSON.parse(localStorage.getItem(historyKey));
-var state=undefined;
-  if (charaData) {
-    fetchInfo(charaData[0], true);
-    $("search-history").show();
 
-    state.searchHistory = charaData;
-  } else {
-    state.searchHistory = [];
-    localStorage.setItem(historyKey, JSON.stringify(state.searchHistory));
-  }
+// creating localStorage for persistent data; in progress
+function getHistory() {
+  return JSON.parse(localStorage.getItem(historyKey));
+}
+
+// Initialize history storage
+const charaData = getHistory();
+var searchHistory = null;
+if (charaData && charaData.length > 0) {
+  fetchInfo(charaData[0], true);
+  // $("search-history").show();
+
+  searchHistory = charaData;
+} else {
+  searchHistory = [];
+  localStorage.setItem(historyKey, JSON.stringify(searchHistory));
+}
+
 function pushlocal(p){
- var history = JSON.parse(historyKey);
+ var history = getHistory();
  history.push(p)
  localStorage.setItem(historyKey, JSON.stringify(history))
 }
+
 function makeHistory(){
-  var list=JSON.parse(localStorage.getItem(historyKey));
-  for (var i=0; i < list; i++){
+  var list=getHistory();
+  for (var i=0; i < list.length; i++){
+    console.log(list[i]);
     var listItem=document.createElement('li');
-    listItem.textContent=list[i].name;
+    listItem.textContent=list[i].Name;
+    listItem.id = `history_${i}`;
+    listItem.classList.add('history-entry');
     document.querySelector('.search-history').appendChild(listItem)
   }
 }
+
+document.querySelector('.search-history').addEventListener('click', (ev) => {
+  ev.preventDefault();
+  const t = ev.target;
+  if (!t.classList.contains('history-entry')) {
+    return false;
+  }
+  const i = parseInt(t.id.replace('history_', ''));
+  const ch = getHistory()[i];
+  console.log(ch);
+});
+
+makeHistory();
