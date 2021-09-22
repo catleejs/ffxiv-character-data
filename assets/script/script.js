@@ -126,11 +126,13 @@ function makeHistory(){
   document.querySelector('.search-history').innerHTML = '';
   for (var i=0; i < list.length; i++){
     console.log(list[i]);
-    var listItem=document.createElement('li');
+    var listItem=document.createElement('button');
     listItem.textContent=list[i].Name;
     listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
-    document.querySelector('.search-history').appendChild(listItem)
+    var liWrap = document.createElement('li');
+    liWrap.appendChild(listItem);
+    document.querySelector('.search-history').appendChild(liWrap);
   }
 }
 
