@@ -159,6 +159,7 @@ const jokeCategories = ['Programming',
 ];
 const safe = 'safe-mode';
 const jokeType = 'twopart';
+
 function fetchJoke(amount=1) {
   return fetch(jokeURL + jokeEndpoint + jokeCategories.join(',') + '?' +
   [
@@ -166,6 +167,18 @@ function fetchJoke(amount=1) {
     `type=${jokeType}`,
     `amount=${amount}`
   ].join('&'))
-  .then(res => res.json())
-  .then(json => console.log(json));
+  .then(res => res.json());
 }
+
+let readyJokes = [];
+setInterval(() => {
+  if (readyJokes.length >= 3) {
+    return;
+  }
+  fetchJoke()
+  .then((json) => {
+    readyJokes.push(json);
+  })
+}, 5000);
+
+
