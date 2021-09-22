@@ -40,6 +40,13 @@ header {
     text-shadow: none;
   }
 
+  .input, .textarea, .select select {
+    background-color: white;
+    border-color: #dbdbdb;
+    border-radius: 30px;
+    color: #363636;
+  }
+
   html {
     background: url(../images/bg-1.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;

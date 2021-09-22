@@ -63,11 +63,15 @@
   <body>
     <section class="section">
       <div class="container">
-        <div class="notification is-primary">
-          <h3><strong>About Me</strong></h3>
-          <p id="about-me-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil maiores, molestiae magni dolorum delectus
+        <div class="columns">
+          <div class="column">
+         <div class="notification is-primary">
+           <h3><strong>About Me</strong></h3>
+           <p id="about-me-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil maiores, molestiae magni dolorum delectus
             repellendus fugiat voluptatum eum iusto cumque doloremque autem nobis at quia ullam iure hic nam! Quisquam?
-          </p>
+           </p>
+          </div>
+         </div>
         </div>
         <div class="notification is-primary" id="character-bio"><strong>Character Bio's</strong>
           <div class="columns">
@@ -90,6 +94,49 @@
         </div>
       </div>
     </div>
+
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-warning">
+              <p class="title">List of Characters</p>
+              <p class="subtitle">Top tile</p>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info">
+              <p class="title">Character</p>
+              <p class="subtitle">With an image</p>
+              <figure class="image is-4by3" id="character-avi">
+                <img src="https://bulma.io/images/placeholders/640x480.png">
+              </figure>
+            </article>
+          </div>
+        </div>
+        <div class="tile is-parent" id="character-bio">
+          <article class="tile is-child notification is-danger">
+            <p class="title">Character Bio's</p>
+            <p class="subtitle">info mofo</p>
+            <div class="content">
+              <!-- Content -->
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+          <div class="content">
+            <p class="title" id="character-stats">Character Statistics</p>
+            <p class="subtitle">With even more content</p>
+            <div class="content bd-notification is-info">
+              <!-- Content -->
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
     </section>
     <script src='./assets/script/script.js'></script>
   </body>
