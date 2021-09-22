@@ -150,3 +150,22 @@ document.querySelector('.search-history').addEventListener('click', (ev) => {
 });
 
 makeHistory();
+
+const jokeURL = 'https://v2.jokeapi.dev';
+const jokeEndpoint = '/joke/';
+const jokeCategories = ['Programming',
+//'Pun',
+//'Spooky',
+];
+const safe = 'safe-mode';
+const jokeType = 'twopart';
+function fetchJoke(amount=1) {
+  return fetch(jokeURL + jokeEndpoint + jokeCategories.join(',') + '?' +
+  [
+    safe,
+    `type=${jokeType}`,
+    `amount=${amount}`
+  ].join('&'))
+  .then(res => res.json())
+  .then(json => console.log(json));
+}
