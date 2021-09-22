@@ -82,6 +82,7 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   .then(json => {
     document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
     pushlocal(json.Results[0]);
+    makeHistory();
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
@@ -112,17 +113,22 @@ if (charaData && charaData.length > 0) {
 
 function pushlocal(p){
  var history = getHistory();
+ if ((i = history.findIndex(e => e.ID === p.ID)) === -1) {
  history.push(p)
+ } else {
+   history[i] = p;
+ }
  localStorage.setItem(historyKey, JSON.stringify(history))
 }
 
 function makeHistory(){
   var list=getHistory();
+  document.querySelector('.search-history').innerHTML = '';
   for (var i=0; i < list.length; i++){
     console.log(list[i]);
     var listItem=document.createElement('li');
     listItem.textContent=list[i].Name;
-    listItem.id = `history_${i}`;
+    listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
     document.querySelector('.search-history').appendChild(listItem)
   }
@@ -134,9 +140,11 @@ document.querySelector('.search-history').addEventListener('click', (ev) => {
   if (!t.classList.contains('history-entry')) {
     return false;
   }
-  const i = parseInt(t.id.replace('history_', ''));
-  const ch = getHistory()[i];
-  console.log(ch);
+  const id = parseInt(t.id.replace('history_',''));
+  const hist = getHistory();
+  const i = hist.findIndex(e => e.ID === id);
+  const ch = hist[i];
+  document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${ch.Avatar}>`;
 });
 
 makeHistory();
