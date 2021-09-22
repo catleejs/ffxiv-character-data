@@ -76,7 +76,8 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     return false;
   }
 
-  desc.textContent = 'Searching...';
+  // desc.textContent = 'Searching...';
+  document.querySelector('#search-loader').classList.add('is-active');
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
   .then(json => {
@@ -84,10 +85,12 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
+    document.querySelector('#search-loader').classList.remove('is-active');
     pushlocal(res.Character);
     makeHistory();
   });
 });
+
 function fetchInfo(charaData, flag){
   var history=document.querySelector('.search-history');
   // history.innerHTML=charaData;
