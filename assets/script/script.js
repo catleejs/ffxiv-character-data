@@ -2,12 +2,13 @@ const ffxivKey = "a308a0bb8cc54a5c8f2f0c8bcb094b6641792b1ef5454012abfc2abb1dad94
 const ffxivUrl = "https://xivapi.com/";
 const characterSearch = "character/search";
 const characterid = "character/";
-const barColor = 'CCCCCC';
+const historyKey = 'searchHistory';
 
 const xivServers = ["Adamantoise", "Aegis", "Alexander", "Anima", "Asura", "Atomos", "Bahamut", "Balmung", "Behemoth", "Belias", "Brynhildr", "Cactuar", "Carbuncle", "Cerberus", "Chocobo", "Coeurl", "Diabolos", "Durandal", "Excalibur", "Exodus", "Faerie", "Famfrit", "Fenrir", "Garuda", "Gilgamesh", "Goblin", "Gungnir", "Hades", "Hyperion", "Ifrit", "Ixion", "Jenova", "Kujata", "Lamia", "Leviathan", "Lich", "Louisoix", "Malboro", "Mandragora", "Masamune", "Mateus", "Midgardsormr", "Moogle", "Odin", "Omega", "Pandaemonium", "Phoenix", "Ragnarok", "Ramuh", "Ridill", "Sargatanas", "Shinryu", "Shiva", "Siren", "Tiamat", "Titan", "Tonberry", "Typhon", "Ultima", "Ultros", "Unicorn", "Valefor", "Yojimbo", "Zalera", "Zeromus", "Zodiark", "Spriggan", "Twintania", "HongYuHai", "ShenYiZhiDi", "LaNuoXiYa", "HuanYingQunDao", "MengYaChi", "YuZhouHeYin", "WoXianXiRan", "ChenXiWangZuo", "BaiYinXiang", "BaiJinHuanXiang", "ShenQuanHen", "ChaoFengTing", "LvRenZhanQiao", "FuXiaoZhiJian", "Longchaoshendian", "MengYuBaoJing", "ZiShuiZhanQiao", "YanXia", "JingYuZhuangYuan", "MoDuNa", "HaiMaoChaWu", "RouFengHaiWan", "HuPoYuan"]
 
 const imgchUrl = 'https://image-charts.com/chart?';
 const imgchType = 'cht=bvs';
+const barColor = 'CCCCCC';
 
 let lastRes = '';
 
@@ -90,8 +91,8 @@ function fetchInfo(charaData, flag){
   history.innerHTML=charaData
 }
 // creating localStorage for persistent data; in progress
-const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
-const charaData = JSON.parse(localStorage.getItem('searchHistory'));
+const searchHistory = JSON.parse(localStorage.getItem(historyKey));
+const charaData = JSON.parse(localStorage.getItem(historyKey));
 var state=undefined;
   if (charaData) {
     fetchInfo(charaData[0], true);
@@ -100,15 +101,15 @@ var state=undefined;
     state.searchHistory = charaData;
   } else {
     state.searchHistory = [];
-    localStorage.setItem('searchHistory', JSON.stringify(state.searchHistory));
+    localStorage.setItem(historyKey, JSON.stringify(state.searchHistory));
   }
 function pushlocal(p){
- var history = JSON.parse('searchHistory');
+ var history = JSON.parse(historyKey);
  history.push(p)
- localStorage.setItem('searchHistory', JSON.stringify(history))
+ localStorage.setItem(historyKey, JSON.stringify(history))
 }
 function makeHistory(){
-  var list=JSON.parse(localStorage.getItem('searchHistory'));
+  var list=JSON.parse(localStorage.getItem(historyKey));
   for (var i=0; i < list; i++){
     var listItem=document.createElement('li');
     listItem.textContent=list[i].name;
