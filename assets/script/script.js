@@ -95,7 +95,7 @@ const charaData = JSON.parse(localStorage.getItem('searchHistory'));
 var state=undefined;
   if (charaData) {
     fetchInfo(charaData[0], true);
-    $(".search-history").show();
+    $("search-history").show();
 
     state.searchHistory = charaData;
   } else {
@@ -106,4 +106,12 @@ function pushlocal(p){
  var history = JSON.parse('searchHistory');
  history.push(p)
  localStorage.setItem('searchHistory', JSON.stringify(history))
+}
+function makeHistory(){
+  var list=JSON.parse(localStorage.getItem('searchHistory'));
+  for (var i=0; i < list; i++){
+    var listItem=document.createElement('li');
+    listItem.textContent=list[i].name;
+    document.querySelector('.search-history').appendChild(listItem)
+  }
 }
