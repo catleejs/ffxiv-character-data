@@ -35,13 +35,13 @@ const fetchCharacterSearch = function(charname, server='Zalera') {
 }
 
 const fetchcharacterid = function(charid) {
-  fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
+  return fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
   .then(function (res){
     return res.json();
   }).then(function(json) {
     console.log(json);
     lastRes = json;
-    return json
+    return json;
   });
 }
 
@@ -81,11 +81,11 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   fetchCharacterSearch(searchStr, server)
   .then(json => {
     document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
-    pushlocal(json.Results[0]);
-    makeHistory();
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
+    pushlocal(res.Character);
+    makeHistory();
   });
 });
 function fetchInfo(charaData, flag){
