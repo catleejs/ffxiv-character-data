@@ -85,10 +85,14 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   .then(res => {
   });
 });
-
+function fetchInfo(charaData, flag){
+  var history=document.querySelector('.searchHistory')
+  history.innerHTML=charaData
+}
 // creating localStorage for persistent data; in progress
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
 const charaData = JSON.parse(localStorage.getItem('searchHistory'));
+var state=undefined;
   if (charaData) {
     fetchInfo(charaData[0], true);
     $(".search-history").show();
@@ -96,4 +100,10 @@ const charaData = JSON.parse(localStorage.getItem('searchHistory'));
     state.searchHistory = charaData;
   } else {
     state.searchHistory = [];
+    localStorage.setItem('searchHistory', JSON.stringify(state.searchHistory));
   }
+function pushlocal(p){
+ var history = JSON.parse('searchHistory');
+ history.push(p)
+ localStorage.setItem('searchHistory', JSON.stringify(history))
+}
