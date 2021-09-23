@@ -1,33 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="assets/style/style.css">
-    <title>Final Fantasy Character Data</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/style/style.css">
+  <title>Final Fantasy Character Data</title>
+  <link rel="icon" type="image/ppg" href="./assets/images/moggle-favicon.png"/>
 </head>
 <!-- where to place the search bar and identifying nav elements -->
 <main>
-    <nav>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Home
+        </a>
+        <a class="navbar-item">
+          About
+        </a>
+        <a class="navbar-item">
+          Character Search
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field has-addons">
+            <form id='search-form'>
+              <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
+              <button id="search-button" class="button is-info" type="submit">Submit</button>
+              <label for="server-list">Select server:</label>
+              <select name="server-list" id="server-list" required>
+                <option value='' selected disabled hidden>Choose:</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-    </nav>
-      <form>
-
-      </form>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="notification is-primary">
+          <h3><strong>About Me</strong></h3>
+          <p id="about-me-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil maiores, molestiae magni dolorum delectus
+            repellendus fugiat voluptatum eum iusto cumque doloremque autem nobis at quia ullam iure hic nam! Quisquam?
+          </p>
+        </div>
+        <div class="notification is-primary"><strong>Character Bio's</strong>
+          <div class="columns">
+            <div class="column">
+              <ul class="search-history"> 
+              </ul>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
+                <div class="columns is-mobile">
+                  <div class="column">
+                    <div id="character-avi" class="bd-notification is-info">Character Image</div>
+                  </div>
+                  <div class="column">
+                    <p id="character-stats" class="bd-notification is-info">Character Statistics</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    <script src='./assets/script/script.js'></script>
+  </body>
 </main>
-<!-- secoond main section; to place the about from pdf -->
-<main>
 
-</main>
-<!-- where to place list of characters that pull up as well as stats from ffxiv api -->
-<main>
-  
-</main>
-
-<body>
-    
-  <script src='./assets/script/script.js'></script>
-</body>
 </html>
