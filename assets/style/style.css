@@ -23,3 +23,23 @@
   opacity: 1;
   z-index: 1;
 }
+
+.err-notification {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #dddddd;
+  opacity: 0;
+  z-index: -2;
+  transition: opacity .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+.err-notification.is-active {
+  opacity: 1;
+  z-index: 1;
+}

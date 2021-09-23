@@ -3,6 +3,7 @@ const ffxivUrl = "https://xivapi.com/";
 const characterSearch = "character/search";
 const characterid = "character/";
 const historyKey = 'searchHistory';
+const errorDiv = document.querySelector('#search-error');
 
 const xivServers = ["Adamantoise", "Aegis", "Alexander", "Anima", "Asura", "Atomos", "Bahamut", "Balmung", "Behemoth", "Belias", "Brynhildr", "Cactuar", "Carbuncle", "Cerberus", "Chocobo", "Coeurl", "Diabolos", "Durandal", "Excalibur", "Exodus", "Faerie", "Famfrit", "Fenrir", "Garuda", "Gilgamesh", "Goblin", "Gungnir", "Hades", "Hyperion", "Ifrit", "Ixion", "Jenova", "Kujata", "Lamia", "Leviathan", "Lich", "Louisoix", "Malboro", "Mandragora", "Masamune", "Mateus", "Midgardsormr", "Moogle", "Odin", "Omega", "Pandaemonium", "Phoenix", "Ragnarok", "Ramuh", "Ridill", "Sargatanas", "Shinryu", "Shiva", "Siren", "Tiamat", "Titan", "Tonberry", "Typhon", "Ultima", "Ultros", "Unicorn", "Valefor", "Yojimbo", "Zalera", "Zeromus", "Zodiark", "Spriggan", "Twintania", "HongYuHai", "ShenYiZhiDi", "LaNuoXiYa", "HuanYingQunDao", "MengYaChi", "YuZhouHeYin", "WoXianXiRan", "ChenXiWangZuo", "BaiYinXiang", "BaiJinHuanXiang", "ShenQuanHen", "ChaoFengTing", "LvRenZhanQiao", "FuXiaoZhiJian", "Longchaoshendian", "MengYuBaoJing", "ZiShuiZhanQiao", "YanXia", "JingYuZhuangYuan", "MoDuNa", "HaiMaoChaWu", "RouFengHaiWan", "HuPoYuan"]
 
@@ -57,21 +58,32 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
 
+document.querySelector('#close-error').addEventListener('click', ev => {
+  ev.preventDefault();
+  if (errorDiv.classList.contains('is-active')) {
+    errorDiv.classList.remove('is-active');
+  }
+})
+
+function showSearchError(err) {
+  errorDiv.querySelector('p').textContent = err;
+  errorDiv.classList.add('is-active');
+}
+
 document.querySelector('#search-button').addEventListener('click', ev => {
   ev.preventDefault();
-  let desc = document.querySelector('#about-me-text');
   let text = document.querySelector('#search-text');
 
   let searchStr = text.value;
   if ('' === searchStr) {
-    desc.textContent = 'Please enter a name to search!';
+    showSearchError('Please enter a name to search!')
     console.log('no character name to search');
     return false;
   }
 
   let server = document.querySelector('#server-list').value;
   if ('' === server) {
-    desc.textContent = 'Please select a server!';
+    showSearchError('Please select a server!')
     console.log('unselected server');
     return false;
   }
@@ -96,6 +108,7 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     if (loader.classList.contains('is-active')) {
       loader.classList.remove('is-active');
     }
+    showSearchError(err.message);
     console.log(err);
   });
 });
