@@ -160,8 +160,8 @@ makeHistory();
 const jokeURL = 'https://v2.jokeapi.dev';
 const jokeEndpoint = '/joke/';
 const jokeCategories = ['Programming',
-//'Pun',
-//'Spooky',
+'Pun',
+'Spooky',
 ];
 const safe = 'safe-mode';
 const jokeType = 'twopart';
