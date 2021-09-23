@@ -35,6 +35,12 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field has-addons">
+            <!--loading overlay-->
+            <div id='search-loader' class='loader-wrapper'>
+              <div class='loader is-loading'></div>
+              <p id='joke-el' class='joke'></p>
+            </div>
+            <!--search form-->
             <form id='search-form'>
               <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
               <button id="search-button" class="button is-info" type="submit">Submit</button>
@@ -43,6 +49,11 @@
                 <option value='' selected disabled hidden>Choose:</option>
               </select>
             </form>
+            <!--form error -->
+            <div id='search-error' class='notification err-notification'>
+              <button id='close-error' class='delete'></button>
+              <p id='search-error-message'></p>
+            </div>
           </div>
         </div>
       </div>

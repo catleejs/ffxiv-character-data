@@ -3,6 +3,7 @@ const ffxivUrl = "https://xivapi.com/";
 const characterSearch = "character/search";
 const characterid = "character/";
 const historyKey = 'searchHistory';
+const errorDiv = document.querySelector('#search-error');
 
 const xivServers = ["Adamantoise", "Aegis", "Alexander", "Anima", "Asura", "Atomos", "Bahamut", "Balmung", "Behemoth", "Belias", "Brynhildr", "Cactuar", "Carbuncle", "Cerberus", "Chocobo", "Coeurl", "Diabolos", "Durandal", "Excalibur", "Exodus", "Faerie", "Famfrit", "Fenrir", "Garuda", "Gilgamesh", "Goblin", "Gungnir", "Hades", "Hyperion", "Ifrit", "Ixion", "Jenova", "Kujata", "Lamia", "Leviathan", "Lich", "Louisoix", "Malboro", "Mandragora", "Masamune", "Mateus", "Midgardsormr", "Moogle", "Odin", "Omega", "Pandaemonium", "Phoenix", "Ragnarok", "Ramuh", "Ridill", "Sargatanas", "Shinryu", "Shiva", "Siren", "Tiamat", "Titan", "Tonberry", "Typhon", "Ultima", "Ultros", "Unicorn", "Valefor", "Yojimbo", "Zalera", "Zeromus", "Zodiark", "Spriggan", "Twintania", "HongYuHai", "ShenYiZhiDi", "LaNuoXiYa", "HuanYingQunDao", "MengYaChi", "YuZhouHeYin", "WoXianXiRan", "ChenXiWangZuo", "BaiYinXiang", "BaiJinHuanXiang", "ShenQuanHen", "ChaoFengTing", "LvRenZhanQiao", "FuXiaoZhiJian", "Longchaoshendian", "MengYuBaoJing", "ZiShuiZhanQiao", "YanXia", "JingYuZhuangYuan", "MoDuNa", "HaiMaoChaWu", "RouFengHaiWan", "HuPoYuan"]
 
@@ -57,26 +58,41 @@ const attachStatChart = function (target, width, height, statnames, statvals, st
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
 
+document.querySelector('#close-error').addEventListener('click', ev => {
+  ev.preventDefault();
+  if (errorDiv.classList.contains('is-active')) {
+    errorDiv.classList.remove('is-active');
+  }
+})
+
+function showSearchError(err) {
+  errorDiv.querySelector('p').textContent = err;
+  errorDiv.classList.add('is-active');
+}
+
 document.querySelector('#search-button').addEventListener('click', ev => {
   ev.preventDefault();
-  let desc = document.querySelector('#about-me-text');
   let text = document.querySelector('#search-text');
 
   let searchStr = text.value;
   if ('' === searchStr) {
-    desc.textContent = 'Please enter a name to search!';
+    showSearchError('Please enter a name to search!')
     console.log('no character name to search');
     return false;
   }
 
   let server = document.querySelector('#server-list').value;
   if ('' === server) {
-    desc.textContent = 'Please select a server!';
+    showSearchError('Please select a server!')
     console.log('unselected server');
     return false;
   }
 
-  desc.textContent = 'Searching...';
+  let loader = document.querySelector('#search-loader');
+  loader.classList.add('is-active');
+  let joke = readyJokes.shift() || {setup:'woah,', delivery: "I'm all out of jokes!"};
+  loader.querySelector('#joke-el').textContent = [joke.setup, joke.delivery].join(' ');
+
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
   .then(json => {
@@ -84,10 +100,19 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
+    loader.classList.remove('is-active');
     pushlocal(res.Character);
     makeHistory();
+  })
+  .catch(err => {
+    if (loader.classList.contains('is-active')) {
+      loader.classList.remove('is-active');
+    }
+    showSearchError(err.message);
+    console.log(err);
   });
 });
+
 function fetchInfo(charaData, flag){
   var history=document.querySelector('.search-history');
   // history.innerHTML=charaData;
@@ -154,11 +179,12 @@ makeHistory();
 const jokeURL = 'https://v2.jokeapi.dev';
 const jokeEndpoint = '/joke/';
 const jokeCategories = ['Programming',
-//'Pun',
-//'Spooky',
+'Pun',
+'Spooky',
 ];
 const safe = 'safe-mode';
 const jokeType = 'twopart';
+
 function fetchJoke(amount=1) {
   return fetch(jokeURL + jokeEndpoint + jokeCategories.join(',') + '?' +
   [
@@ -166,6 +192,18 @@ function fetchJoke(amount=1) {
     `type=${jokeType}`,
     `amount=${amount}`
   ].join('&'))
-  .then(res => res.json())
-  .then(json => console.log(json));
+  .then(res => res.json());
 }
+
+let readyJokes = [];
+setInterval(() => {
+  if (readyJokes.length >= 3) {
+    return;
+  }
+  fetchJoke()
+  .then((json) => {
+    readyJokes.push(json);
+  })
+}, 5000);
+
+
