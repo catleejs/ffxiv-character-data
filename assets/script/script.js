@@ -78,7 +78,7 @@ document.querySelector('#search-button').addEventListener('click', ev => {
 
   let loader = document.querySelector('#search-loader');
   loader.classList.add('is-active');
-  let joke = readyJokes.shift();
+  let joke = readyJokes.shift() || {setup:'woah,', delivery: "I'm all out of jokes!"};
   loader.querySelector('#joke-el').textContent = [joke.setup, joke.delivery].join(' ');
 
   searchStr.replace(' ', '+');
@@ -88,9 +88,15 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     return fetchcharacterid(json.Results[0].ID);
   })
   .then(res => {
-    document.querySelector('#search-loader').classList.remove('is-active');
+    loader.classList.remove('is-active');
     pushlocal(res.Character);
     makeHistory();
+  })
+  .catch(err => {
+    if (loader.classList.contains('is-active')) {
+      loader.classList.remove('is-active');
+    }
+    console.log(err);
   });
 });
 
