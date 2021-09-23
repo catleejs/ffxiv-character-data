@@ -76,8 +76,11 @@ document.querySelector('#search-button').addEventListener('click', ev => {
     return false;
   }
 
-  // desc.textContent = 'Searching...';
-  document.querySelector('#search-loader').classList.add('is-active');
+  let loader = document.querySelector('#search-loader');
+  loader.classList.add('is-active');
+  let joke = readyJokes.shift();
+  loader.querySelector('#joke-el').textContent = [joke.setup, joke.delivery].join(' ');
+
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
   .then(json => {
