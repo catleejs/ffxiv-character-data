@@ -20,9 +20,7 @@
           <li>
             <a href="#navbarBasicExample" class="navbar-item">Home</a>
           </li>
-          <li>
-            <a href="#about-me-text" class="navbar-item">About</a>
-          </li>
+
           <li>
             <a href="#character" class="navbar-item">Character Search</a>
           </li>
@@ -32,14 +30,30 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="field has-addons">
+            <!--loading overlay-->
+            <div id='search-loader' class='loader-wrapper'>
+              <div class='loader is-loading'></div>
+              <p id='joke-el' class='joke'></p>
+            </div>
+            <!--search form-->
+            <div class="field has-addons">
             <form id='search-form'>
               <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
               <button id="search-button" class="button is-info" type="submit">Submit</button>
+              <div class="control is-expanded select is-fullwidth">
               <label for="server-list">Select server:</label>
               <select name="server-list" id="server-list" required>
                 <option value='' selected disabled hidden>Choose:</option>
               </select>
             </form>
+          </div>
+          </div>
+            <!--form error -->
+            <div id='search-error' class='notification err-notification'>
+
+              <button id='close-error' class='delete'></button>
+              <p id='search-error-message'></p>
+            </div>
           </div>
         </div>
       </div>
@@ -63,25 +77,35 @@
   <body>
     <section class="section">
       <div class="container">
+
         <div class="columns">
-          <div class="column">
-         <div class="notification is-primary">
-           <h3><strong>About Me</strong></h3>
-           <p id="about-me-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil maiores, molestiae magni dolorum delectus
-            repellendus fugiat voluptatum eum iusto cumque doloremque autem nobis at quia ullam iure hic nam! Quisquam?
+          <div class="column is-one-third column has-background-dark">
+         <div class="notification is-primary column has-background-dark">
+           <h3><strong>Search for your character in the top right!</strong></h3>
+           <br>
+           <p id="about-me-text">Welcome to the fan-made Final Fantasy XIV character search! Begin by searching your character and selecting your server to pull your character's information. 
            </p>
           </div>
          </div>
+
+        <div class="notification is-primary column is-auto column has-background-dark">
+          <h3><strong>Purpose</strong></h3>
+          <br>
+          <br>
+          <p id="about-me-text">The purpose of this website is to pull information from the Final Fantasy XIV fan-made <a href="https://xivapi.com/">API</a> including job/class information, levels, and an avatar and using a secondary API to call one of the character's favorite <a href="https://v2.jokeapi.dev">jokes.</a> They love to bring these up in taverns for some reason. 
+          </p>
+
         </div>
-        <div class="notification is-primary" id="character-bio"><strong>Character Bio's</strong>
+        <div class="notification is-primary column is-auto column has-background-dark" id="character-bio">
           <div class="columns">
-            <div class="column">
-              List of All Character's
+            <div class="column is-one-half column has-background-dark">
+              <ul class="search-history"> 
+              </ul>
             </div>
             <div class="columns">
-              <div class="column">
+              <div class="column has-background-dark">
                 <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
-                <div class="columns is-mobile">
+                <div class="columns is-mobile column is-one-half column has-background-dark">
                   <div class="column">
                     <div id="character-avi" class="bd-notification is-info">Character Image</div>
                   </div>
@@ -99,25 +123,14 @@
       <div class="tile is-vertical is-8">
         <div class="tile">
           <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-warning">
-              <p class="title">List of Characters</p>
-              <p class="subtitle">Top tile</p>
-            </article>
+
           </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-info">
-              <p class="title">Character</p>
-              <p class="subtitle">With an image</p>
-              <figure class="image is-4by3" id="character-avi">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div>
+
         </div>
-        <div class="tile is-parent" id="character-bio">
+        <div class="tile is-parent" id="">
           <article class="tile is-child notification is-danger">
-            <p class="title">Character Bio's</p>
-            <p class="subtitle">info mofo</p>
+            <p class="title">Created By:</p>
+            <p class="subtitle">Created by <a href="https://github.com/madileesmith">Cat,</a> <a href="https://github.com/lancekk">Lance,</a> <a href="https://github.com/kferguson52">Kyle,</a> <a href="https://github.com/julianmend23">Julian,</a> and <a href="https://github.com/Killian356">Killian.</a></p>
             <div class="content">
               <!-- Content -->
             </div>
