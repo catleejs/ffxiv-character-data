@@ -26,7 +26,7 @@ initServerSelect();
 
 const fetchCharacterSearch = function(charname, server='Zalera') {
   return fetch(ffxivUrl + characterSearch + '?name=' + charname + `&server=${server}` +'&private_key=' + ffxivKey)
-  .then(function (res){
+  .then(function (res) {
     return res.json();
   }).then(function(json) {
     console.log(json);
