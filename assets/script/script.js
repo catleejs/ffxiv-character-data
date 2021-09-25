@@ -24,36 +24,36 @@ const initServerSelect = () => {
 }
 initServerSelect();
 
-const fetchCharacterSearch = function(charname, server='Zalera') {
-  return fetch(ffxivUrl + characterSearch + '?name=' + charname + `&server=${server}` +'&private_key=' + ffxivKey)
-  .then(function (res){
-    return res.json();
-  }).then(function(json) {
-    console.log(json);
-    lastRes = json;
-    return json;
-  });
+const fetchCharacterSearch = function (charname, server = 'Zalera') {
+  return fetch(ffxivUrl + characterSearch + '?name=' + charname + `&server=${server}` + '&private_key=' + ffxivKey)
+    .then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      console.log(json);
+      lastRes = json;
+      return json;
+    });
 }
 
-const fetchcharacterid = function(charid) {
+const fetchcharacterid = function (charid) {
   return fetch(ffxivUrl + characterid + charid + "?private_key=" + ffxivKey)
-  .then(function (res){
-    return res.json();
-  }).then(function(json) {
-    console.log(json);
-    lastRes = json;
-    return json;
-  });
+    .then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      console.log(json);
+      lastRes = json;
+      return json;
+    });
 }
 
-const attachStatChart = function (target, width, height, statnames, statvals, statcolors=[barColor]) {
+const attachStatChart = function (target, width, height, statnames, statvals, statcolors = [barColor]) {
   const chartUrl = imgchUrl +
     [
       imgchType,
       'chd=t:' + statvals.join(','),
       'chl=' + statnames.join('|'),
       `chs=${width}x${height}`
-      `chco=${statcolors.join('|')}`,
+        `chco=${statcolors.join('|')}`,
     ].join('&');
   target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
 }
@@ -90,31 +90,31 @@ document.querySelector('#search-button').addEventListener('click', ev => {
 
   let loader = document.querySelector('#search-loader');
   loader.classList.add('is-active');
-  let joke = readyJokes.shift() || {setup:'woah,', delivery: "I'm all out of jokes!"};
+  let joke = readyJokes.shift() || { setup: 'woah,', delivery: "I'm all out of jokes!" };
   loader.querySelector('#joke-el').textContent = [joke.setup, joke.delivery].join(' ');
 
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
-  .then(json => {
-    document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
-    return fetchcharacterid(json.Results[0].ID);
-  })
-  .then(res => {
-    loader.classList.remove('is-active');
-    pushlocal(res.Character);
-    makeHistory();
-  })
-  .catch(err => {
-    if (loader.classList.contains('is-active')) {
+    .then(json => {
+      document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
+      return fetchcharacterid(json.Results[0].ID);
+    })
+    .then(res => {
       loader.classList.remove('is-active');
-    }
-    showSearchError(err.message);
-    console.log(err);
-  });
+      pushlocal(res.Character);
+      makeHistory();
+    })
+    .catch(err => {
+      if (loader.classList.contains('is-active')) {
+        loader.classList.remove('is-active');
+      }
+      showSearchError(err.message);
+      console.log(err);
+    });
 });
 
-function fetchInfo(charaData, flag){
-  var history=document.querySelector('.search-history');
+function fetchInfo(charaData, flag) {
+  var history = document.querySelector('.search-history');
   // history.innerHTML=charaData;
 }
 
@@ -136,23 +136,23 @@ if (charaData && charaData.length > 0) {
   localStorage.setItem(historyKey, JSON.stringify(searchHistory));
 }
 
-function pushlocal(p){
- var history = getHistory();
- if ((i = history.findIndex(e => e.ID === p.ID)) === -1) {
- history.push(p)
- } else {
-   history[i] = p;
- }
- localStorage.setItem(historyKey, JSON.stringify(history))
+function pushlocal(p) {
+  var history = getHistory();
+  if ((i = history.findIndex(e => e.ID === p.ID)) === -1) {
+    history.push(p)
+  } else {
+    history[i] = p;
+  }
+  localStorage.setItem(historyKey, JSON.stringify(history))
 }
 
-function makeHistory(){
-  var list=getHistory();
+function makeHistory() {
+  var list = getHistory();
   document.querySelector('.search-history').innerHTML = '';
-  for (var i=0; i < list.length; i++){
+  for (var i = 0; i < list.length; i++) {
     console.log(list[i]);
-    var listItem=document.createElement('button');
-    listItem.textContent=list[i].Name;
+    var listItem = document.createElement('button');
+    listItem.textContent = list[i].Name;
     listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
     var liWrap = document.createElement('li');
@@ -167,7 +167,7 @@ document.querySelector('.search-history').addEventListener('click', (ev) => {
   if (!t.classList.contains('history-entry')) {
     return false;
   }
-  const id = parseInt(t.id.replace('history_',''));
+  const id = parseInt(t.id.replace('history_', ''));
   const hist = getHistory();
   const i = hist.findIndex(e => e.ID === id);
   const ch = hist[i];
@@ -179,20 +179,20 @@ makeHistory();
 const jokeURL = 'https://v2.jokeapi.dev';
 const jokeEndpoint = '/joke/';
 const jokeCategories = ['Programming',
-'Pun',
-'Spooky',
+  'Pun',
+  'Spooky',
 ];
 const safe = 'safe-mode';
 const jokeType = 'twopart';
 
-function fetchJoke(amount=1) {
+function fetchJoke(amount = 1) {
   return fetch(jokeURL + jokeEndpoint + jokeCategories.join(',') + '?' +
-  [
-    safe,
-    `type=${jokeType}`,
-    `amount=${amount}`
-  ].join('&'))
-  .then(res => res.json());
+    [
+      safe,
+      `type=${jokeType}`,
+      `amount=${amount}`
+    ].join('&'))
+    .then(res => res.json());
 }
 
 let readyJokes = [];
@@ -201,9 +201,9 @@ setInterval(() => {
     return;
   }
   fetchJoke()
-  .then((json) => {
-    readyJokes.push(json);
-  })
+    .then((json) => {
+      readyJokes.push(json);
+    })
 }, 5000);
 
 
