@@ -25,10 +25,13 @@
              <a href="#character" class="navbar-item">Character Search</a>
            </li>
          </ul>
+        </div>
        </div>
     </nav>
   </header>
-<div class="container">
+
+
+<div class="container is-widescreen is-fullhd is-max-desktop is-max-widescreen is-fluid">
   <div class="columns is-mobile is-desktop">
     <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
      <div class="navbar-end">
@@ -83,6 +86,9 @@
   <body>
     <section class="section">
       <div class="container">
+        <div class="tile is-ancestor">
+          <div class="tile is-parent">
+          <div class="tile is-4">
         <div class="columns">
           <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
          <div class="notification is-primary column has-background-dark">
@@ -92,8 +98,11 @@
            </p>
           </div>
          </div>
+        </div>
+      </div>
         
-
+<div class="tile is-4">
+  <div class="tile is-child">
       <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
         <div class="notification is-primary column has-background-dark">
           <h3><strong>Purpose</strong></h3>
@@ -103,7 +112,10 @@
           </p>
         </div>
       </div>
+    </div>
+    </div>
 
+    <div class="tile is-4">
       <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
         <div class="notification is-primary column has-background-dark" id="character-bio">
           <div class="columns">
@@ -114,11 +126,8 @@
          </div>
 
             <div class="columns">
-              <div class="column has-background-dark">
+              <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
                 <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
-                <div class="columns is-mobile column is-one-half column has-background-dark">
-                  <div class="column">
-                    <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
                     <div id="character-avi" class="bd-notification is-info">Character Image</div>
                   </div>
                   <div class="column">
@@ -126,41 +135,13 @@
                   </div>
                 </div>
               </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-8">
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-
-          </div>
-
-        </div>
-        <div class="tile is-parent" id="">
-          <article class="tile is-child notification is-danger">
-            <p class="title">Spinky Spanky</p>
-            <p class="subtitle">Spinky Spanky</p>
-            <div class="content">
-              <!-- Content -->
-            </div>
-          </article>
-        </div>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-success">
-          <div class="content">
-            <p class="title" id="character-stats">Character Statistics</p>
-            <p class="subtitle">With even more content</p>
-            <div class="content bd-notification is-info">
-              <!-- Content -->
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
+  
+  
   </section>
     
   <script src='./assets/script/script.js'></script>
