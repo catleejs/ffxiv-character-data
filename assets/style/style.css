@@ -108,6 +108,10 @@ header {
     opacity: 1;
     z-index: 1;
   }
+.format {
+    width: 1280px;
+}
+
   /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 
 @media screen and (max-width: 980px) {
