@@ -12,53 +12,59 @@
 </head>
 <!-- where to place the search bar and identifying nav elements -->
 <main>
-  <nav class="navbar" role="navigation" aria-label="main navigation" id="main nav">
-    <header>
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <ul>
-          <li>
-            <a href="#navbarBasicExample" class="navbar-item">Home</a>
-          </li>
+  <header>
+    <nav class="navbar" role="navigation" aria-label="main navigation" id="main nav"></nav>
+     <div id="navbarBasicExample" class="navbar-menu">
+       <div class="navbar-start">
+         <ul>
+           <li>
+             <a href="#navbarBasicExample" class="navbar-item">Home</a>
+           </li>
 
-          <li>
-            <a href="#character" class="navbar-item">Character Search</a>
-          </li>
-        </ul>
-      </div>
-      </header>
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field has-addons">
-            <!--loading overlay-->
-            <div id='search-loader' class='loader-wrapper'>
-              <div class='loader is-loading'></div>
-              <p id='joke-el' class='joke'></p>
-            </div>
-            <!--search form-->
-            <div class="field has-addons field is-grouped">
-            <form id='search-form'>
-              <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
-              <button id="search-button" class="button is-info" type="submit">Submit</button>
-              <div class="control is-expanded select is-fullwidth">
-              <label for="server-list">Select server:</label>
-              <select name="server-list" id="server-list" required>
-                <option value='' selected disabled hidden>Server Select</option>
-              </select>
-            </form>
-          </div>
-          </div>
-            <!--form error -->
-            <div id='search-error' class='notification err-notification'>
+           <li>
+             <a href="#character" class="navbar-item">Character Search</a>
+           </li>
+         </ul>
+       </div>
+    </nav>
+  </header>
+<div class="container">
+  <div class="columns is-mobile is-desktop">
+    <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+     <div class="navbar-end">
+       <div class="navbar-item">
+         <div class="field has-addons">
+           <!--loading overlay-->
+           <div id='search-loader' class='loader-wrapper'>
+             <div class='loader is-loading'></div>
+             <p id='joke-el' class='joke'></p>
+           </div>
+           <!--search form-->
+           <div class="field has-addons field is-grouped">
+           <form id='search-form'>
+             <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
+             <div class="control is-expanded select is-fullwidth">
+             <label for="server-list">Select server:</label>
+             <select name="server-list" id="server-list" required>
+               <option value='' selected disabled hidden>Server Select</option>
+             </select>
+             <button id="search-button" class="button is-info" type="submit">Submit</button>
+           </form>
+         </div>
+         </div>
+       </div>
+     </div>
+    </div>
+   </div>
+</div>
+        <!--form error -->
+        <div id='search-error' class='notification err-notification'>
 
-              <button id='close-error' class='delete'></button>
-              <p id='search-error-message'></p>
-            </div>
-          </div>
+          <button id='close-error' class='delete'></button>
+          <p id='search-error-message'></p>
         </div>
       </div>
     </div>
-  </nav>
 
 <!--Modal for search bar function-->
 
@@ -74,12 +80,11 @@
 
 <!--Body Style-->
 
-  <body class="is-size-1-mobile is-size-2-desktop">
+  <body>
     <section class="section">
       <div class="container">
-
         <div class="columns">
-          <div class="column is-one-third column has-background-dark">
+          <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
          <div class="notification is-primary column has-background-dark">
            <h3><strong>Search for your character in the top right!</strong></h3>
            <br>
@@ -87,26 +92,33 @@
            </p>
           </div>
          </div>
+        
 
-        <div class="notification is-primary column is-auto column has-background-dark">
+      <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
+        <div class="notification is-primary column has-background-dark">
           <h3><strong>Purpose</strong></h3>
           <br>
           <br>
           <p id="about-me-text">The purpose of this website is to pull information from the Final Fantasy XIV fan-made <a href="https://xivapi.com/">API</a> including job/class information, levels, and an avatar and using a secondary API to call one of the character's favorite <a href="https://v2.jokeapi.dev">jokes.</a> They love to bring these up in taverns for some reason. 
           </p>
-
         </div>
-        <div class="notification is-primary column is-auto column has-background-dark" id="character-bio">
+      </div>
+
+      <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
+        <div class="notification is-primary column has-background-dark" id="character-bio">
           <div class="columns">
             <div class="column is-one-half column has-background-dark">
               <ul class="search-history"> 
               </ul>
             </div>
+         </div>
+
             <div class="columns">
               <div class="column has-background-dark">
                 <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
                 <div class="columns is-mobile column is-one-half column has-background-dark">
                   <div class="column">
+                    <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
                     <div id="character-avi" class="bd-notification is-info">Character Image</div>
                   </div>
                   <div class="column">
@@ -129,8 +141,8 @@
         </div>
         <div class="tile is-parent" id="">
           <article class="tile is-child notification is-danger">
-            <p class="title">Created By:</p>
-            <p class="subtitle">Created by <a href="https://github.com/madileesmith">Cat,</a> <a href="https://github.com/lancekk">Lance,</a> <a href="https://github.com/kferguson52">Kyle,</a> <a href="https://github.com/julianmend23">Julian,</a> and <a href="https://github.com/Killian356">Killian.</a></p>
+            <p class="title">Spinky Spanky</p>
+            <p class="subtitle">Spinky Spanky</p>
             <div class="content">
               <!-- Content -->
             </div>
@@ -149,9 +161,19 @@
         </article>
       </div>
     </div>
+  </section>
+    
+  <script src='./assets/script/script.js'></script>
 
-    </section>
-    <script src='./assets/script/script.js'></script>
+    <footer>
+      <h2>
+          Made with ❤️ by Fans!
+      </h2>
+      <div>
+        <p class="subtitle">Created by: <a href="https://github.com/madileesmith">Cat,</a> <a href="https://github.com/lancekk">Lance,</a> <a href="https://github.com/kferguson52">Kyle,</a> <a href="https://github.com/julianmend23">Julian,</a> and <a href="https://github.com/Killian356">Killian.</a></p>
+        </div>
+  </footer>
+
   </body>
 </main>
 
