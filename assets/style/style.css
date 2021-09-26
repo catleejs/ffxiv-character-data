@@ -153,6 +153,12 @@ section {
   margin: auto;
 }
 
+/* For History Dropdown */
+.dropdown-content {
+  max-height: 10em;
+  overflow: auto;
+}
+
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 1280px) {

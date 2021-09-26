@@ -70,6 +70,12 @@ function showSearchError(err) {
   errorDiv.classList.add('is-active');
 }
 
+const histMenu = document.querySelector('#history-select');
+histMenu.addEventListener('click', ev => {
+  ev.preventDefault();
+  histMenu.classList.toggle('is-active');
+})
+
 document.querySelector('#search-button').addEventListener('click', ev => {
   ev.preventDefault();
   let text = document.querySelector('#search-text');
@@ -155,7 +161,7 @@ function makeHistory() {
     listItem.textContent = list[i].Name;
     listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
-    var liWrap = document.createElement('li');
+    var liWrap = document.createElement('div');
     liWrap.appendChild(listItem);
     document.querySelector('.search-history').appendChild(liWrap);
   }

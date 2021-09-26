@@ -42,7 +42,7 @@
                     <div class="control is-expanded select is-fullwidth">
                       <label for="server-list">Select server:</label>
                       <select name="server-list" id="server-list" required>
-                        <option value='' selected disabled hidden>Server Select</option>
+                        <option value='' selected disabled hidden>Select Server</option>
                         </select>
                           <button id="search-button" class="button is-info" type="submit">Submit</button>
                         </form>
@@ -111,8 +111,22 @@
                 <div class="notification is-primary column has-background-dark" id="character-bio">
                   <div class="columns">
                     <div class="column is-one-half column has-background-dark">
-                      <ul class="search-history">
-                      </ul>
+
+                      <div id='history-select' class='dropdown'>
+                        <div class='dropdown-trigger'>
+                          <button class='button'>
+                            <span>Characters</span>
+                            <span class='icon is-small'>
+                              <i class='fas fa-angle-down'></i>
+                            </span>
+                          </button>
+                        </div>
+                        <div class='dropdown-menu' role='menu'>
+                          <div class='dropdown-content search-history'>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
