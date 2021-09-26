@@ -157,13 +157,12 @@ function makeHistory() {
   document.querySelector('.search-history').innerHTML = '';
   for (var i = 0; i < list.length; i++) {
     console.log(list[i]);
-    var listItem = document.createElement('button');
+    var listItem = document.createElement('a');
     listItem.textContent = list[i].Name;
     listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
-    var liWrap = document.createElement('div');
-    liWrap.appendChild(listItem);
-    document.querySelector('.search-history').appendChild(liWrap);
+    listItem.classList.add('button');
+    document.querySelector('.search-history').appendChild(listItem);
   }
 }
 

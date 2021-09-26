@@ -28,7 +28,7 @@
   <section>
     <div class="container mb-4">
       <div class="columns is-mobile is-desktop">
-          <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+          <div class="column ">
               <div class="field has-addons">
                 <!--loading overlay-->
                   <div id='search-loader' class='loader-wrapper'>
@@ -40,11 +40,10 @@
                   <form id='search-form'>
                    <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
                     <div class="control is-expanded select is-fullwidth">
-                      <label for="server-list">Select server:</label>
                       <select name="server-list" id="server-list" required>
                         <option value='' selected disabled hidden>Select Server</option>
                         </select>
-                          <button id="search-button" class="button is-info" type="submit">Submit</button>
+                          <button id="search-button" class="button is-info" type="submit">Search</button>
                         </form>
                       </div>
                     </div>
@@ -74,7 +73,7 @@
           <div class="tile is-parent">
             <div class="tile is-4 mr-4 ml-4 mt-4 mb-4">
               <div class="tile is-child box">
-              <div class="columns">
+                <div class="columns">
                   <div class="notification is-primary column has-background-dark">
                     <h3><strong>Search for your character in the top right!</strong></h3>
                     <br>
@@ -82,8 +81,8 @@
                       your character and selecting your server to pull your character's information.
                     </p>
                   </div>
+                </div>
               </div>
-            </div>
             </div>
 
             <div class="tile is-4 mr-4 ml-4 mt-4 mb-4">
@@ -122,7 +121,7 @@
                           </button>
                         </div>
                         <div class='dropdown-menu' role='menu'>
-                          <div class='dropdown-content search-history'>
+                          <div class='dropdown-content search-history has-text-black'>
                           </div>
                         </div>
                       </div>
@@ -132,11 +131,11 @@
                 </div>
 
                 <div class="tile is-4">
-                  <div class="tile is child box">
+                  <div class="tile is-child box">
                   <div class="columns">
-                    <div
-                      class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
-                      <div id="character-avi" class="bd-notification is-info">Character Image</div>
+                    <div class="column has-background-dark">
+                      <figure id='character-avi' class='image is-96x96'>
+                      </figure>
                     </div>
                     <div class="column">
                       <p id="character-stats" class="bd-notification is-info">Character Statistics</p>
