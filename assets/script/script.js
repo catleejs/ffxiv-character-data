@@ -101,7 +101,8 @@ const showStats = (characterData, statNames = coreStats) => {
 
   nameTarget.textContent = characterData.Name;
 
-  classTarget.textContent = characterData.ActiveClassJob.UnlockedState.Name;
+  classTarget.textContent = 
+    `Level ${characterData.ActiveClassJob.Level} ${characterData.ActiveClassJob.UnlockedState.Name}`;
 
   statsTarget.innerHTML = '';
   let statEls = statNames.map(k => {
