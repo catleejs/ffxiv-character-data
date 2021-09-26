@@ -6,6 +6,41 @@ const historyKey = 'searchHistory';
 const errorDiv = document.querySelector('#search-error');
 
 const xivServers = ["Adamantoise", "Aegis", "Alexander", "Anima", "Asura", "Atomos", "Bahamut", "Balmung", "Behemoth", "Belias", "Brynhildr", "Cactuar", "Carbuncle", "Cerberus", "Chocobo", "Coeurl", "Diabolos", "Durandal", "Excalibur", "Exodus", "Faerie", "Famfrit", "Fenrir", "Garuda", "Gilgamesh", "Goblin", "Gungnir", "Hades", "Hyperion", "Ifrit", "Ixion", "Jenova", "Kujata", "Lamia", "Leviathan", "Lich", "Louisoix", "Malboro", "Mandragora", "Masamune", "Mateus", "Midgardsormr", "Moogle", "Odin", "Omega", "Pandaemonium", "Phoenix", "Ragnarok", "Ramuh", "Ridill", "Sargatanas", "Shinryu", "Shiva", "Siren", "Tiamat", "Titan", "Tonberry", "Typhon", "Ultima", "Ultros", "Unicorn", "Valefor", "Yojimbo", "Zalera", "Zeromus", "Zodiark", "Spriggan", "Twintania", "HongYuHai", "ShenYiZhiDi", "LaNuoXiYa", "HuanYingQunDao", "MengYaChi", "YuZhouHeYin", "WoXianXiRan", "ChenXiWangZuo", "BaiYinXiang", "BaiJinHuanXiang", "ShenQuanHen", "ChaoFengTing", "LvRenZhanQiao", "FuXiaoZhiJian", "Longchaoshendian", "MengYuBaoJing", "ZiShuiZhanQiao", "YanXia", "JingYuZhuangYuan", "MoDuNa", "HaiMaoChaWu", "RouFengHaiWan", "HuPoYuan"]
+const xivStatMap = {
+  1: "Strength",
+  2: "Dexterity",
+  3: "Vitality",
+  4: "Intelligence",
+  5: "Mind",
+  6: "Piety",
+  7: "HP",
+  8: "MP",
+  19: "Spell Speed",
+  20: "Attack Power",
+  21: "Defense",
+  22: "Direct Hit Rate",
+  24: "Magic Defense",
+  27: "Critical Hit",
+  33: "Attack Magic Potency",
+  34: "Healing Magic Potency",
+  44: "Determination",
+  45: "Skill Speed",
+  46: "Tenacity",
+}
+const xivStatKeys = Object.keys(xivStatMap).reduce((acc, k) => {
+  acc[xivStatMap[k]] = k;
+  return acc;
+}, {});
+const coreStats = [
+  'HP',
+  'MP',
+  'Strength',
+  'Dexterity',
+  'Vitality',
+  'Intelligence',
+  'Mind',
+  'Piety',
+];
 
 const imgchUrl = 'https://image-charts.com/chart?';
 const imgchType = 'cht=bvs';
@@ -46,16 +81,15 @@ const fetchcharacterid = function (charid) {
     });
 }
 
-const attachStatChart = function (target, width, height, statnames, statvals, statcolors = [barColor]) {
-  const chartUrl = imgchUrl +
-    [
-      imgchType,
-      'chd=t:' + statvals.join(','),
-      'chl=' + statnames.join('|'),
-      `chs=${width}x${height}`
-        `chco=${statcolors.join('|')}`,
-    ].join('&');
-  target.innerHTML = `<img alt='character stats' src=${chartUrl}></img>`;
+const showStats = (characterData, statNames = coreStats) => {
+  let disp = document.querySelector('#character-stats');
+  disp.innerHTML = '';
+  let statEls = statNames.map(k => {
+    let val = characterData.GearSet.Attributes[xivStatKeys[k]];
+    let p = document.createElement('p');
+    p.innerText = `${k}: ${val}`;
+    disp.appendChild(p);
+  });
 }
 
 document.querySelector('#close-error').addEventListener('click', ev => {
@@ -102,13 +136,14 @@ document.querySelector('#search-button').addEventListener('click', ev => {
   searchStr.replace(' ', '+');
   fetchCharacterSearch(searchStr, server)
     .then(json => {
-      document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${json.Results[0].Avatar}>`;
       return fetchcharacterid(json.Results[0].ID);
     })
     .then(res => {
       loader.classList.remove('is-active');
       pushlocal(res.Character);
       makeHistory();
+      document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${res.Character.Avatar}>`;
+      showStats(res.Character);
     })
     .catch(err => {
       if (loader.classList.contains('is-active')) {
@@ -121,7 +156,6 @@ document.querySelector('#search-button').addEventListener('click', ev => {
 
 function fetchInfo(charaData, flag) {
   var history = document.querySelector('.search-history');
-  // history.innerHTML=charaData;
 }
 
 // creating localStorage for persistent data; in progress
@@ -134,8 +168,6 @@ const charaData = getHistory();
 var searchHistory = null;
 if (charaData && charaData.length > 0) {
   fetchInfo(charaData[0], true);
-  // $("search-history").show();
-
   searchHistory = charaData;
 } else {
   searchHistory = [];
@@ -177,6 +209,7 @@ document.querySelector('.search-history').addEventListener('click', (ev) => {
   const i = hist.findIndex(e => e.ID === id);
   const ch = hist[i];
   document.querySelector('#character-avi').innerHTML = `<img alt="Character's Avatar" src=${ch.Avatar}>`;
+  showStats(ch);
 });
 
 makeHistory();
