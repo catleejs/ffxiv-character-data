@@ -81,14 +81,37 @@ const fetchcharacterid = function (charid) {
     });
 }
 
+const statNameHTML = (stat) => {
+  let r = document.createElement('span');
+  r.textContent = stat;
+  return r;
+}
+
+const statValHTML = (val) => {
+  let r = document.createElement('span');
+  r.textContent = val;
+  return r;
+}
+
 const showStats = (characterData, statNames = coreStats) => {
   let disp = document.querySelector('#character-stats');
-  disp.innerHTML = '';
+  let nameTarget = disp.querySelector('#character-name');
+  let classTarget = disp.querySelector('#character-class');
+  let statsTarget = disp.querySelector('#stat-display');
+
+  nameTarget.textContent = characterData.Name;
+
+  classTarget.textContent = characterData.ActiveClassJob.UnlockedState.Name;
+
+  statsTarget.innerHTML = '';
   let statEls = statNames.map(k => {
     let val = characterData.GearSet.Attributes[xivStatKeys[k]];
-    let p = document.createElement('p');
-    p.innerText = `${k}: ${val}`;
-    disp.appendChild(p);
+    let p = document.createElement('div');
+    p.classList.add('is-flex');
+    p.classList.add('is-justify-content-space-between');
+    p.appendChild(statNameHTML(k));
+    p.appendChild(statValHTML(val));
+    statsTarget.appendChild(p);
   });
 }
 
