@@ -13,53 +13,48 @@
 <!-- where to place the search bar and identifying nav elements -->
 <main>
   <header>
-    <nav class="navbar" role="navigation" aria-label="main navigation" id="main nav"></nav>
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <ul>
-          <li>
-            <a href="#navbarBasicExample" class="navbar-item">Home</a>
-          </li>
-
-          <li>
-            <a href="#character" class="navbar-item">Character Search</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="#navbarBasicExample" class="navbar-item">Home</a>
+        </li>
+        <li>
+          <a href="#character" class="navbar-item">Character Search</a>
+        </li>
+      </ul>
     </nav>
   </header>
 
-
-  <div class="container is-widescreen is-fullhd is-max-desktop is-max-widescreen is-fluid">
-    <div class="columns is-mobile is-desktop">
-      <div
-        class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field has-addons">
-              <!--loading overlay-->
-              <div id='search-loader' class='loader-wrapper'>
-                <div class='loader is-loading'></div>
-                <p id='joke-el' class='joke'></p>
+  <section>
+    <div class="container mb-4">
+      <div class="columns is-mobile is-desktop">
+          <div class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+              <div class="field has-addons">
+                <!--loading overlay-->
+                  <div id='search-loader' class='loader-wrapper'>
+                  <div class='loader is-loading'></div>
+                  <p id='joke-el' class='joke'></p>
+                </div>
+                <!--search form-->
+                <div class="field has-addons field is-grouped">
+                  <form id='search-form'>
+                   <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
+                    <div class="control is-expanded select is-fullwidth">
+                      <label for="server-list">Select server:</label>
+                      <select name="server-list" id="server-list" required>
+                        <option value='' selected disabled hidden>Server Select</option>
+                        </select>
+                          <button id="search-button" class="button is-info" type="submit">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <!--search form-->
-              <div class="field has-addons field is-grouped">
-                <form id='search-form'>
-                  <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name"
-                    required>
-                  <div class="control is-expanded select is-fullwidth">
-                    <label for="server-list">Select server:</label>
-                    <select name="server-list" id="server-list" required>
-                      <option value='' selected disabled hidden>Server Select</option>
-                    </select>
-                    <button id="search-button" class="button is-info" type="submit">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+      </section>
+
+  
     </div>
   </div>
   <!--form error -->
@@ -71,29 +66,16 @@
   </div>
   </div>
 
-  <!--Modal for search bar function-->
-
-  <div class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-content">
-      <p class="image is-4by3">
-        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="">
-      </p>
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-
   <!--Body Style-->
 
-  <body>
-    <section class="section">
+  <body class="mt-4">
+    <section class="section ml-4">
       <div class="container">
         <div class="tile is-ancestor">
           <div class="tile is-parent">
-            <div class="tile is-4">
+            <div class="tile is-4 mr-4 ml-4 mt-4 mb-4">
+              <div class="tile is-child box">
               <div class="columns">
-                <div
-                  class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
                   <div class="notification is-primary column has-background-dark">
                     <h3><strong>Search for your character in the top right!</strong></h3>
                     <br>
@@ -101,14 +83,14 @@
                       your character and selecting your server to pull your character's information.
                     </p>
                   </div>
-                </div>
               </div>
             </div>
+            </div>
 
-            <div class="tile is-4">
-              <div class="tile is-child">
+            <div class="tile is-4 mr-4 ml-4 mt-4 mb-4">
+              <div class="tile is-child box">
                 <div
-                  class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
+                  class="column has-background-dark">
                   <div class="notification is-primary column has-background-dark">
                     <h3><strong>Purpose</strong></h3>
                     <br>
@@ -123,9 +105,10 @@
               </div>
             </div>
 
-            <div class="tile is-4">
+            <div class="tile is-4 mr-4 ml-4 mt-4 mb-4">
+              <div class="tile is-child box">
               <div
-                class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
+                class="column has-background-dark">
                 <div class="notification is-primary column has-background-dark" id="character-bio">
                   <div class="columns">
                     <div class="column is-one-half column has-background-dark">
@@ -133,16 +116,19 @@
                       </ul>
                     </div>
                   </div>
+                </div>
 
+                <div class="tile is-4">
+                  <div class="tile is child box">
                   <div class="columns">
                     <div
                       class="column is-three-quarters-mobile is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd column has-background-dark">
-                      <p class="bd-notification is-info"><strong>Character Stat's</strong></p>
                       <div id="character-avi" class="bd-notification is-info">Character Image</div>
                     </div>
                     <div class="column">
                       <p id="character-stats" class="bd-notification is-info">Character Statistics</p>
                     </div>
+                   </div>
                   </div>
                 </div>
               </div>
@@ -156,6 +142,7 @@
 
     <script src='./assets/script/script.js'></script>
 
+    
     <footer>
       <h2>
         Made with ❤️ by Fans!

@@ -5,14 +5,19 @@
 }
 
 header {
-  padding: 20px 35px;
+  background: #252525;
+  width: 90%;
+  padding: 25px 25px;
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-radius: 15px;
+  margin: auto;
   justify-content: space-between;
   flex-wrap: wrap;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  margin: auto;
 }
 
 header ul {
@@ -36,8 +41,15 @@ header ul li a:hover {
   text-shadow: none;
 }
 
+.hero {
+  padding-top: 0px;
+  padding-right: 15px;
+  padding-bottom: 25px;
+  padding-left: 15px;
+}
+
 footer {
-  background: #fce138;
+  background: #252525;
   width: 90%;
   padding: 25px 25px;
   display: flex;
@@ -61,8 +73,12 @@ footer div {
 .input, .textarea, .select select {
   background-color: white;
   border-color: #dbdbdb;
-  border-radius: 30px;
+  border-radius: 60px;
   color: #363636;
+}
+
+.submit button {
+  border-radius: 15px;
 }
 
 img {
@@ -136,6 +152,7 @@ section {
   border-radius: 15px;
   margin: auto;
 }
+
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 1280px) {
