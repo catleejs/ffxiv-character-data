@@ -218,6 +218,7 @@ function makeHistory() {
     listItem.id = `history_${list[i].ID}`;
     listItem.classList.add('history-entry');
     listItem.classList.add('button');
+    listItem.classList.add('is-fullwidth');
     document.querySelector('.search-history').appendChild(listItem);
   }
 }
