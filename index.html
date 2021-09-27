@@ -28,41 +28,35 @@
   <section>
     <div class="container mb-4">
       <div class="columns is-mobile is-desktop">
-          <div class="column ">
-              <div class="field has-addons">
-                <!--loading overlay-->
-                  <div id='search-loader' class='loader-wrapper'>
-                  <div class='loader is-loading'></div>
-                  <p id='joke-el' class='joke'></p>
+        <div class="column ">
+          <div class="field has-addons">
+            <!--loading overlay-->
+            <div id='search-loader' class='loader-wrapper'>
+              <div class='loader is-loading'></div>
+              <p id='joke-el' class='joke'></p>
+            </div>
+            <!--search form-->
+            <div class="field has-addons field is-grouped">
+              <form id='search-form'>
+                <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
+                <div class="control is-expanded select is-fullwidth">
+                  <select name="server-list" id="server-list" required>
+                    <option value='' selected disabled hidden>Select Server</option>
+                  </select>
+                  <button id="search-button" class="button is-info" type="submit">Search</button>
                 </div>
-                <!--search form-->
-                <div class="field has-addons field is-grouped">
-                  <form id='search-form'>
-                   <input id="search-text" class="input is-primary" type="text" placeholder="Search Character Name" required>
-                    <div class="control is-expanded select is-fullwidth">
-                      <select name="server-list" id="server-list" required>
-                        <option value='' selected disabled hidden>Select Server</option>
-                        </select>
-                          <button id="search-button" class="button is-info" type="submit">Search</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </form>
+            </div>
+            <!--form error -->
+            <div id='search-error' class='notification err-notification'>
+              <button id='close-error' class='delete'></button>
+              <p id='search-error-message'></p>
+            </div>
+          </div>
         </div>
-      </section>
-
+      </div>
     </div>
-  </div>
-  <!--form error -->
-  <div id='search-error' class='notification err-notification'>
-
-    <button id='close-error' class='delete'></button>
-    <p id='search-error-message'></p>
-  </div>
-  </div>
-  </div>
+  </section>
 
   <!--Body Style-->
 
